@@ -10,7 +10,7 @@ import {ApplicationState} from '../../models/application-state.model';
 })
 export class NavbarComponent implements OnInit {
 
-    constructor(private applicationStore: ApplicationStore) {
+    constructor(public applicationStore: ApplicationStore) {
     }
 
     ngOnInit() {
