@@ -1,0 +1,13 @@
+<p class="p-description-radius has-text-grey">
+    You need to set the radius of the search zone. Keep in mind that the larger the zone is, the less precise the summit location will be.<br>
+    <i>Min : 1km, max : 100km</i><br>
+</p>
+<div class="field has-addons">
+    <p class="control">
+        <input class="input" type="text" placeholder="Radius" [formControl]="radiusInput" [ngClass]="{'is-danger': !radiusInput.valid}">
+    </p>
+    <p class="control">
+        <a class="button is-static">km</a>
+    </p>
+</div>
+<app-sidebar-buttons-prev-next (next)="next()" (previous)="previous()"></app-sidebar-buttons-prev-next>

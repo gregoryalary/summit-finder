@@ -1,0 +1,15 @@
+<p class="p-description-api-key has-text-grey">
+    You need to choose the precision of the algorithm.
+</p>
+<div class="field">
+    <div class="control">
+        <input class="slider is-fullwidth has-output" step="1" min="1" max="5" value="3" type="range" [formControl]="precisionInput" id="precisionSlider">
+        <output for="precisionSlider">{{ precisionInput.value }}</output>
+    </div>
+</div>
+<p class="p-description-api-key has-text-grey">
+    <i class="fa fa-question-circle"></i>
+    This will send at worst <b>{{ currentPrecision.maxRequestAtWorst }}</b> requests to the Google API.
+    <i>(To get the elevation of {{ currentPrecision.maxRequestAtWorst * currentPrecision.volleySize }} coordinates)</i>
+</p>
+<app-sidebar-buttons-prev-next (next)="next()" (previous)="previous()"></app-sidebar-buttons-prev-next>

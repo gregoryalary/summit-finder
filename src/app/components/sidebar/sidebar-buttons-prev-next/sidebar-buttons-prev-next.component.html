@@ -1,0 +1,12 @@
+<a class="button is-primary" (click)="emitPrevious()" disabled *ngIf="loading">
+    <i class="fas fa-chevron-left"></i>
+    <span>Previous</span>
+</a>
+<a class="button is-primary" (click)="emitPrevious()" *ngIf="!loading">
+    <i class="fas fa-chevron-left"></i>
+    <span>Previous</span>
+</a>
+<a class="button is-primary" (click)="emitNext()" [ngClass]="{'is-loading': loading}">
+    <span>Next</span>
+    <i class="fas fa-chevron-right"></i>
+</a>

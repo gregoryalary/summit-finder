@@ -1,0 +1,22 @@
+<div class="message is-primary">
+    <div class="message-header">
+        Done! 👌
+    </div>
+    <div class="message-body message-body-result">
+        <h3 class="has-text-warning message-aprox">
+            <i class="fas fa-exclamation-triangle"></i>
+            Keep in mind that this result is an approximation
+        </h3>
+        <p class="result-altitude-p">
+            The highest result has been found at an altitude of
+            <b>{{ bestResult.elevation | number: '0.0-2' }}</b> meters.
+        </p>
+        <p>Latitude : ≈ <b>{{ bestResult.location.lat | number:'0.0-5' }}</b></p>
+        <p>Longitude : ≈ <b>{{ bestResult.location.lng | number:'0.0-5' }}</b></p>
+        <div class="restart-btn-wrapper">
+            <a class="button is-primary" (click)="restart()">
+                <span>Restart</span>
+            </a>
+        </div>
+    </div>
+</div>

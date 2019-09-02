@@ -1,0 +1,15 @@
+<aside xmlns="http://www.w3.org/1999/html"
+       [ngClass]="{'menu-is-active': menuIsActive, 'menu-is-disabled': !menuIsActive}">
+    <div class="controls">
+        <article class="message is-primary" *ngIf="applicationState === 'START'">
+            <div class="message-body">
+                Start by clicking on the zone where you want to find the summit
+            </div>
+        </article>
+        <app-sidebar-set-radius *ngIf="applicationState === 'LOCATION_READY'"></app-sidebar-set-radius>
+        <app-sidebar-precision-settings *ngIf="applicationState === 'SET_PRECISION'"></app-sidebar-precision-settings>
+        <app-sidebar-api-settings
+            *ngIf="applicationState === 'SET_API_KEY' || applicationState === 'SEARCHING'"></app-sidebar-api-settings>
+        <app-sidebar-result *ngIf="applicationState === 'END'"></app-sidebar-result>
+    </div>
+</aside>

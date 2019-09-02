@@ -1,0 +1,26 @@
+:host {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid lightgray;
+    > aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        transition: width .2s linear;
+        &.menu-is-active {
+            width: 300px;
+        }
+        &.menu-is-disabled {
+            width: 0;
+        }
+        > div.controls {
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+    }
+}

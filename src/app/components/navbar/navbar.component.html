@@ -1,0 +1,13 @@
+<nav role="navigation" aria-label="main navigation">
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <a role="button" (click)="toggleMenuIsActive()" class="navbar-burger" aria-label="menu"
+               aria-expanded="false" [ngClass]="{'is-active': (applicationStore.menuIsActive$ | async)}">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            <p class="title is-3">Summit-finder</p>
+        </div>
+    </section>
+</nav>

@@ -1,0 +1,11 @@
+<p class="p-description-api-key has-text-grey">
+    In order to find the elevations of the zone you need to provide your Google API key.
+</p>
+<div class="field">
+    <p class="control">
+        <input class="input" type="text" placeholder="API key" [formControl]="apiKeyInput"
+               [ngClass]="{'is-danger': !apiKeyInput.valid && apiKeyInput.dirty && !apiKeyInput.disabled}">
+    </p>
+</div>
+<app-sidebar-buttons-prev-next (next)="next()" (previous)="previous()"
+                               [loading]="(applicationStore.state$ | async) === 'SEARCHING'"></app-sidebar-buttons-prev-next>

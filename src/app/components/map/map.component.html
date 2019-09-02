@@ -1,0 +1,28 @@
+<div class="modal is-active" *ngIf="displayErrorModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <button class="delete" aria-label="close" (click)="closeErrorModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <p class="title is-4">
+                Ooops, we couldn't fetch the elevations from the Google API
+            </p>
+            <p>
+                Are you sure that your google API key is valid?
+            </p>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-warning" (click)="closeErrorModal()">OK</button>
+        </footer>
+    </div>
+</div>
+<div class="map"
+    [leafletOptions]="options"
+    (leafletClick)="onClick($event)"
+    leaflet>
+    <div *ngIf="searchRadius" [leafletLayer]="searchRadius"></div>
+    <div *ngIf="resultMarkers" [leafletLayers]="resultMarkers"></div>
+    <div *ngIf="resultAreaMarkers" [leafletLayers]="resultAreaMarkers"></div>
+    <div *ngIf="gridMarkers && gridMarkers.length" [leafletLayers]="gridMarkers"></div>
+</div>

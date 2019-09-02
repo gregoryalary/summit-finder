@@ -1,0 +1,17 @@
+:host {
+    div.message > div.message-body-result {
+        text-align: center;
+        > h3.message-aprox {
+            margin-bottom: 10px;
+        }
+        > p.result-altitude-p {
+            margin-bottom: 10px;
+        }
+        > div.restart-btn-wrapper {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

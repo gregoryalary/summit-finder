@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    > p {
+        margin-bottom: 10px;
+        text-align: justify;
+    }
+    > div.field > div.control {
+        > input.has-output {
+            vertical-align: middle !important;
+        }
+        > output {
+            top: 0 !important;
+            vertical-align: middle !important;
+        }
+    }
+}
