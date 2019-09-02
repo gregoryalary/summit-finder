@@ -12,12 +12,12 @@ import {ApplicationState} from '../../../models/application-state.model';
 })
 export class SidebarApiSettingsComponent implements OnInit, OnDestroy {
 
-    private apiKeyInput: FormControl;
+    public apiKeyInput: FormControl;
 
     private destroy: Subject<boolean> = new Subject();
     private destroy$: Observable<boolean> = this.destroy.asObservable();
 
-    constructor(private applicationStore: ApplicationStore) {
+    constructor(public applicationStore: ApplicationStore) {
 
     }
 
