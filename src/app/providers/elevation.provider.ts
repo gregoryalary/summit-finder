@@ -12,7 +12,6 @@ export class ElevationProvider {
     static countRequestSent: number = 0;
 
     private API = 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/elevation/json';
-   // key = 'AIzaSyBssmCqTTeWNX5-4T6lfUinOocKbiTBusI';
 
     constructor(private http: HttpClient, private applicationStore: ApplicationStore) {
     }
