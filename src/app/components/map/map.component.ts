@@ -1,15 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {circle, Icon, LatLng, latLng, LatLngLiteral, Layer, LeafletMouseEvent, MapOptions, marker, tileLayer} from 'leaflet';
+import {circle, LatLng, latLng, Layer, LeafletMouseEvent, MapOptions, marker, tileLayer} from 'leaflet';
 import {ApplicationStore} from '../../store/application.store';
-import {combineLatest, Observable, of, Subject, zip} from 'rxjs';
-import {filter, flatMap, map, take, takeUntil} from 'rxjs/operators';
+import {combineLatest, Observable, Subject, zip} from 'rxjs';
+import {filter, take, takeUntil} from 'rxjs/operators';
 import {ApplicationState} from '../../models/application-state.model';
 import {SummitFinderService} from '../../services/summit-finder.service';
-import {ElevationProvider} from '../../providers/elevation.provider';
-import {Elevation} from '../../models/elevation.model';
 import {Precision} from '../../models/precision.model';
 import {Result} from '../../models/result.model';
-import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
 
 @Component({
     selector: 'app-map',
