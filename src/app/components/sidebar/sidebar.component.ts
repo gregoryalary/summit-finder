@@ -1,11 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApplicationStore} from '../../store/application.store';
-import {FormControl, Validators} from '@angular/forms';
 import {combineLatest, fromEvent, Observable, Subject} from 'rxjs';
-import {filter, map, startWith, take, takeUntil} from 'rxjs/operators';
+import {map, startWith, takeUntil} from 'rxjs/operators';
 import {ApplicationState} from '../../models/application-state.model';
-import {ElevationProvider} from '../../providers/elevation.provider';
-import {Elevation} from '../../models/elevation.model';
 
 @Component({
     selector: 'app-sidebar',

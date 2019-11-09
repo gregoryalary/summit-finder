@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {LatLng, LatLngLiteral} from 'leaflet';
+import {LatLngLiteral} from 'leaflet';
 import {Observable, of} from 'rxjs';
 import {Elevation} from '../models/elevation.model';
 import {flatMap, map, take} from 'rxjs/operators';
