@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {circle, LatLng, latLng, Layer, LeafletMouseEvent, MapOptions, marker, tileLayer} from 'leaflet';
-import {ApplicationStore} from '../../store/application.store';
-import {combineLatest, Observable, Subject, zip} from 'rxjs';
-import {filter, take, takeUntil} from 'rxjs/operators';
-import {ApplicationState} from '../../models/application-state.model';
-import {SummitFinderService} from '../../services/summit-finder.service';
-import {Precision} from '../../models/precision.model';
-import {Result} from '../../models/result.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { circle, LatLng, latLng, Layer, LeafletMouseEvent, MapOptions, marker, tileLayer, icon } from 'leaflet';
+import { ApplicationStore } from '../../store/application.store';
+import { combineLatest, Observable, Subject, zip } from 'rxjs';
+import { filter, take, takeUntil } from 'rxjs/operators';
+import { ApplicationState } from '../../models/application-state.model';
+import { SummitFinderService } from '../../services/summit-finder.service';
+import { Precision } from '../../models/precision.model';
+import { Result } from '../../models/result.model';
 
 @Component({
     selector: 'app-map',
@@ -70,7 +70,14 @@ export class MapComponent implements OnInit, OnDestroy {
         ).pipe(takeUntil(this.destroy$)).subscribe(([state, results]: [ApplicationState, Result[]]): void => {
             if (state === 'END') {
                 this.resultMarkers = results.map((result: Result): Layer => {
-                    const resultMarker: Layer = marker(result.location);
+                    const resultMarker: Layer = marker(result.location, {
+                        icon: icon({
+                            iconSize: [25, 41],
+                            iconAnchor: [13, 41],
+                            iconUrl: 'leaflet/marker-icon.png',
+                            shadowUrl: 'leaflet/marker-shadow.png'
+                        })
+                    });
                     resultMarker.bindPopup(`${result.elevation} meters`).openPopup();
                     return resultMarker;
                 });
@@ -92,7 +99,7 @@ export class MapComponent implements OnInit, OnDestroy {
             this.applicationStore.searchRadius$
         ).pipe(takeUntil(this.destroy$)).subscribe(([state, location, radius]: [ApplicationState, LatLng, number]): void => {
             if (['LOCATION_READY', 'SEARCHING', 'SET_PRECISION', 'SET_API_KEY', 'END'].indexOf(state) > -1 && location && radius > 0) {
-                this.searchRadius = circle(location, {radius: radius * 1000});
+                this.searchRadius = circle(location, { radius: radius * 1000 });
             } else {
                 this.searchRadius = null;
             }
