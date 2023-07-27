@@ -13,4 +13,4 @@ Basically the algorithm used to power this application will brute-force it by re
 
 ## Try it out
 
-[[gregoryalary.github.io/summit-finder](https://summit-finder.gregoryalary.dev)](https://summit-finder.gregoryalary.dev)
+[gregoryalary.github.io/summit-finder](https://summit-finder.gregoryalary.dev)](https://summit-finder.gregoryalary.dev)
