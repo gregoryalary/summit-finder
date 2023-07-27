@@ -1,10 +1,11 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {LatLngLiteral} from 'leaflet';
-import {Observable, of} from 'rxjs';
+import {Observable, from, of} from 'rxjs';
 import {Elevation} from '../models/elevation.model';
 import {flatMap, map, take} from 'rxjs/operators';
 import {ApplicationStore} from '../store/application.store';
+import { Loader } from '@googlemaps/js-api-loader';
 
 @Injectable()
 export class ElevationProvider {
@@ -21,16 +22,27 @@ export class ElevationProvider {
         if (!coordinates || coordinates.length <= 0) {
             return of([]);
         } else {
-            const coordinatesToString: string = coordinates.map((coordinate: LatLngLiteral): string => {
-                return `${coordinate.lat},${coordinate.lng}`;
-            }).join('|');
             return this.applicationStore.apiKey$.pipe(flatMap((key: string): Observable<Elevation[]> => {
-                return this.http.get(`${this.API}?locations=${coordinatesToString}&key=${key}`).pipe(
-                    take(1),
-                    map((result: any): Elevation[] => {
-                        return result.results;
-                    })
-                );
+                const googleApiLoader = new Loader({
+                    apiKey: key,
+                    version: "weekly",
+                    libraries: ["elevation"]
+                });
+
+                return from(googleApiLoader.importLibrary('elevation')).pipe(flatMap(google => {
+                    const elevationApi = new google.ElevationService();
+                    return new Observable<Elevation[]>(observer => {
+                        elevationApi.getElevationForLocations({locations: coordinates}, (response) => {
+                            observer.next(response.map(elevation => ({
+                                elevation: elevation.elevation,
+                                location: {
+                                    lat: elevation.location.lat(),
+                                    lng: elevation.location.lng()
+                                }
+                            })));
+                        });
+                    });
+                }));
             }));
         }
     }
